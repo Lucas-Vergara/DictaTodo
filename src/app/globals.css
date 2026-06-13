@@ -1,0 +1,427 @@
+/* Custom design system for DictaTodo - Glassmorphism Dark Theme */
+:root {
+  --font-sans: var(--font-outfit), 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  /* Color Palette (Dark Theme First) */
+  --bg-dark: #09090b;
+  --bg-gradient: linear-gradient(140deg, #0b0b14 0%, #120c24 50%, #080511 100%);
+  
+  --glass-bg: rgba(20, 20, 35, 0.55);
+  --glass-bg-hover: rgba(30, 30, 50, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-active: rgba(168, 85, 247, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  
+  /* Text colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Accent Colors */
+  --accent-primary: #a855f7; /* Violet */
+  --accent-primary-hover: #c084fc;
+  --accent-primary-glow: rgba(168, 85, 247, 0.35);
+  
+  --accent-success: #10b981; /* Emerald */
+  --accent-success-glow: rgba(16, 185, 129, 0.2);
+  
+  --accent-danger: #ef4444; /* Red */
+  --accent-danger-glow: rgba(239, 68, 68, 0.25);
+  
+  --accent-warning: #f59e0b; /* Amber */
+}
+
+/* Base Settings */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent; /* Disable tap highlight flash on mobile */
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent elastic scrolling outer body bounce */
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background Glowing Orbs for extra visual depth */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+.orb-1 {
+  top: 10%;
+  left: -10%;
+  width: 250px;
+  height: 250px;
+  background: var(--accent-primary);
+}
+
+.orb-2 {
+  bottom: 15%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: #3b82f6; /* Blue secondary glow */
+  opacity: 0.15;
+}
+
+/* Typography settings */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Glassmorphism Styles */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
+}
+
+.glass-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.glass-input {
+  background: rgba(15, 15, 25, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-primary-glow);
+  background: rgba(15, 15, 25, 0.6);
+}
+
+.glass-button {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button:hover:not(:disabled) {
+  background: var(--glass-bg-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.02);
+}
+
+.glass-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.glass-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.glass-button-primary {
+  background: var(--accent-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px 0 var(--accent-primary-glow);
+}
+
+.glass-button-primary:hover:not(:disabled) {
+  background: var(--accent-primary-hover);
+  box-shadow: 0 6px 20px 0 var(--accent-primary-glow);
+}
+
+/* Tabs styles */
+.tab-container {
+  display: flex;
+  background: rgba(10, 10, 20, 0.45);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 4px;
+  gap: 4px;
+  position: relative;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.pulse-record {
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.wave-bar {
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: var(--accent-primary);
+  border-radius: 2px;
+  animation: wave 1.2s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(2) { animation-delay: 0.15s; }
+.wave-bar:nth-child(3) { animation-delay: 0.3s; }
+.wave-bar:nth-child(4) { animation-delay: 0.45s; }
+.wave-bar:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Custom checkbox custom design */
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  height: 24px;
+  width: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: transparent;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  background: var(--accent-success);
+  border-color: var(--accent-success);
+  color: var(--bg-dark);
+  box-shadow: 0 0 10px var(--accent-success-glow);
+}
+
+.checkmark svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 3;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: scale(0);
+}
+
+.checkbox-container input:checked ~ .checkmark svg {
+  transform: scale(1);
+}
+
+/* Date Indicator Timeline Scroll */
+.timeline-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 4px 0 12px 0;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.timeline-scroll::-webkit-scrollbar {
+  display: none; /* Hide scrollbar WebKit */
+}
+
+.timeline-item {
+  scroll-snap-align: start;
+  flex: 0 0 calc(25% - 8px); /* Fit ~4 items on screen */
+  min-width: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 380px) {
+  .timeline-item {
+    flex: 0 0 calc(33.33% - 8px); /* Fit ~3 items on small screens */
+  }
+}
+
+.timeline-item.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px var(--accent-primary-glow);
+}
+
+.timeline-item.active .day-name {
+  color: var(--bg-dark);
+  font-weight: 700;
+}
+
+.timeline-item.active .day-number {
+  color: var(--bg-dark);
+  font-weight: 800;
+}
+
+/* Custom layout wrappers */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+  margin-top: 12px;
+}
