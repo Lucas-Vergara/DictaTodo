@@ -5,7 +5,6 @@ import "./globals.css";
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-outfit",
 });
 
 export const metadata: Metadata = {
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "DictaTodo",
   },
 };
@@ -33,10 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={outfit.variable}>
-        {/* Glow orbs in background */}
-        <div className="glow-orb orb-1" />
-        <div className="glow-orb orb-2" />
+      <body className={outfit.className}>
         {children}
       </body>
     </html>
